@@ -1,0 +1,1270 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{notebook}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Знакомство с Python
+1}\label{ux437ux43dux430ux43aux43eux43cux441ux442ux432ux43e-ux441-python-1}
+
+На этом занятии мы познакомимся с типами данных, вводом и выводом
+информации, научимся подключать модули.
+
+Ссылки: Документация по python:
+https://docs.python.org/3/tutorial/index.html Документация на русском:
+https://pythoner.name/documentation Тренировка в программировании на
+python: https://pythontutor.ru 
+
+    \section{Переменные}\label{ux43fux435ux440ux435ux43cux435ux43dux43dux44bux435}
+
+Основной объект, с которым мы будем работать это переменные. В них мы
+будем хранить разные данные. Данные бывают разных типов, соответственно
+хранить их тоже нужно по-разному. Поэтому в Python у каждой переменной
+есть тип, который определяет, что там может лежать. Пожалуй, самый
+простой из типов это \texttt{int}. \texttt{int} происходит от слова
+integer, что означает "целое". Несложно догадаться, что хранит
+переменная такого типа одно целое число. Попробуем создать переменную
+типа \texttt{int} и напечатать ее значение:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{5}  \PY{c+c1}{\PYZsh{} теперь в переменной a лежит значение 5, если она не существовала до этого, она просто создастся}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}  \PY{c+c1}{\PYZsh{} напечатаем значение переменной a}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} и ее тип}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5
+<class 'int'>
+
+    \end{Verbatim}
+
+    В ячейке выше мы познакомились с тремя вещами: 1. \texttt{=}, он же
+оператор присваивания. Позволяет присвоить тому, что стоит в левой части
+то, что стоит в правой. Сейчас мы присвоили переменной a значение 5. 2.
+\texttt{print()} ---- это функция. Вызов функции означает какое-то
+действие. У каждой функции есть аргументы, которые указываются в круглых
+скобках. Функция \texttt{print()} отвечает за то, чтобы вывести объект
+на экран. 3. \texttt{type()}. Как мы уже знаем, это функция. Она по
+переданному значению возвращает его тип. Мог возникнуть вопрос: а какого
+типа значение возвращается функцией \texttt{type()}? Проверим!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'type'>
+
+    \end{Verbatim}
+
+    Теперь видно, что в Python есть специальный тип переменной, который
+хранит тип переменной. Окей, а какие еще есть типы переменных?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{3.1415926}  \PY{c+c1}{\PYZsh{} создаем дробное число}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n+nb}{type}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{s} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abacaba}\PY{l+s+s2}{\PYZdq{}}  \PY{c+c1}{\PYZsh{} создаем строку}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n+nb}{type}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3.1415926 <class 'float'>
+abacaba <class 'str'>
+
+    \end{Verbatim}
+
+    Как видно, у нас еще есть дробные числа ---- \texttt{float} и строки
+---- \texttt{str}. Дальше мы будем встречаться и с другими типами
+переменных.
+
+    \section{Операции над
+переменными}\label{ux43eux43fux435ux440ux430ux446ux438ux438-ux43dux430ux434-ux43fux435ux440ux435ux43cux435ux43dux43dux44bux43cux438}
+
+Зачем нам данные, если мы с ними ничего не можем делать? Это неправда,
+делать мы можем много что. Например, для чисел определены обычные
+математические операции: +, -, *, /.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{5}
+        \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{7}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{8} \PY{o}{/} \PY{l+m+mi}{7}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZhy{}} \PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{*} \PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{/} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} кстати, а какого типа будут результаты вычислений?}
+        
+        \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
+        \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{3}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8
+1.1428571428571428
+12
+-2
+35
+0.7142857142857143
+8
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{/} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        ZeroDivisionError                         Traceback (most recent call last)
+
+        <ipython-input-6-34630cd80504> in <module>
+    ----> 1 print(5 / 0)
+    
+
+        ZeroDivisionError: division by zero
+
+    \end{Verbatim}
+
+    Порядок операций такой же, как в математике. Но я рекомендую ставить
+скобки везде, где не очевидно какой порядок выполнения операций.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6
+8
+
+    \end{Verbatim}
+
+    Для целых чисел у нас еще есть операции \texttt{//} и \texttt{\%} ----
+целочисленное деление и взятие остатка от деления.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{23}
+         \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{5}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{/}\PY{o}{/} \PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZpc{}} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4
+3
+
+    \end{Verbatim}
+
+    У нас также есть операции над строками. Мы можем прибавить одну строку к
+другой, а также умножить строку на число.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{a} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abacaba}\PY{l+s+s1}{\PYZsq{}}  \PY{c+c1}{\PYZsh{} здесь я присвоил переменной a значение другого типа. Да, так можно}
+         \PY{n}{b} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daba}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b} \PY{o}{+} \PY{n}{a}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{a}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{*} \PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b} \PY{o}{*} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+abacabadaba
+dabaabacaba
+abacabaabacabaabacaba
+abacabaabacabaabacaba
+dabadabadabadabadaba
+
+    \end{Verbatim}
+
+    Операция \texttt{+} для строк просто склеивает строки, а операция
+\texttt{*} возвращает строку, повторенную несколько раз. Для строк есть
+функция \texttt{len()}. Она вернет длину строки ---- целое число.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+7
+4
+11
+
+    \end{Verbatim}
+
+    Еще для строк у нас есть специальный оператор ---- \texttt{{[}{]}}. Он
+позволяет взять из строки один символ. \textbf{Символы всегда нумеруются
+с нуля}, то есть 0, 1, 2, ... Позиция символа в строке называется
+индексом.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{b}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+b d
+c
+
+    \end{Verbatim}
+
+    Что будет, если индекс выходит за пределы строки?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abacaba}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        IndexError                                Traceback (most recent call last)
+
+        <ipython-input-14-837d7eb31868> in <module>
+          1 a = 'abacaba'
+    ----> 2 print(a[10])
+    
+
+        IndexError: string index out of range
+
+    \end{Verbatim}
+
+    А что, если индекс сделать отрицательным? Что получается?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abacaba}\PY{l+s+s2}{\PYZdq{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a
+b
+
+    \end{Verbatim}
+
+    А вот поменять элемент строки по индексу не получится ---- Python выдаст
+ошибку.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-16-c31edb067936> in <module>
+    ----> 1 a[2] = 'b'
+    
+
+        TypeError: 'str' object does not support item assignment
+
+    \end{Verbatim}
+
+    \section{Ввод и вывод
+данных}\label{ux432ux432ux43eux434-ux438-ux432ux44bux432ux43eux434-ux434ux430ux43dux43dux44bux445}
+
+До этого все наши данные были вписаны в код программы, а это как-то не
+очень интересно. Научимся считывать данные в переменные. Для этого нам
+нужна функция \texttt{input()}. Она считает одну строку входных данных и
+вернет нам ее в виде строки.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{a} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+asdfgs
+asdfgs
+<class 'str'>
+
+    \end{Verbatim}
+
+    Проблема в том, что даже если мы вводим число, оно все равно считывается
+как строка. Что делать? На помощь нам придут функции преобразования
+типов. Функция \texttt{int()} попробует преобразовать переданное
+значение в целое число. Функция \texttt{float()} --- в вещественное
+число, а функция \texttt{str()} ---- в строку. Тогда мы можем сделать
+так:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{a} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3214
+3214
+<class 'int'>
+
+    \end{Verbatim}
+
+    Теперь поближе познакомимся с функцией \texttt{print}. Как мы уже
+выяснили, она позволяет вывести какой-то объект на экран. В нее можно
+передавать несколько параметров, которые по умолчанию будут распечатаны
+через пробел, а в конце будет напечатан перевод строки.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{s} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abaasdf}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{100}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+abaasdf 100
+
+    \end{Verbatim}
+
+    Мы можем изменить символы, которые вставляются между объектами, которые
+мы хотим распечатать, а также символ, который будет добавлен в конце.
+Для этого нам нужно будет воспользоваться параметрами \texttt{sep} и
+\texttt{end}. Это именованные параметры, у них довольно необычный способ
+передачи в функцию.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{s} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{abaasdf}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{100}
+         \PY{n}{pi} \PY{o}{=} \PY{l+m+mf}{3.1415926}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{pi}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{!}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dasfasdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+abaasdf, 100, 3.1415926!
+dasfasdf
+
+    \end{Verbatim}
+
+    В ячейке выше я вставил между объектами запятую и пробел, а в конце ----
+восклицательный знак и перевод строки. Символ \texttt{\textbackslash{}n}
+соответствует переводу строки. Он интерпретируется как один символ,
+несмотря на то, что мы видим два. Это сделано для удобства прочтения
+человеком.
+
+    \section{Логические
+конструкции}\label{ux43bux43eux433ux438ux447ux435ux441ux43aux438ux435-ux43aux43eux43dux441ux442ux440ux443ux43aux446ux438ux438}
+
+    Нам потребуется еще один важный тип данных ---- \texttt{bool}.
+Переменные этого типа могут принимать два возможных значения ----
+\texttt{True} или \texttt{False}. Зачем он нам нужен? Как ты знаешь,
+числа можно не только складывать, умножать, вычитать и делить. Их еще
+можно сравнивать между собой. Например, если у нас есть две переменные
+\texttt{a} и \texttt{b}, то нам может быть интересен результат сравнения
+\texttt{a\ \textgreater{}\ b}. У такого сравнения только два возможных
+исхода ---- либо \texttt{a} больше \texttt{b}, либо нет. Тогда результат
+такого выражения удобно хранить в виде \texttt{bool}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{a} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} больше}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} больше либо равно}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} меньше}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} меньше либо равно}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} равно}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{!=} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} не равно}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZpc{}} \PY{n}{b} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}  
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10
+10
+False
+True
+False
+True
+True
+False
+True
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{a} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}} \PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+dsafdsf
+dsafdsf
+True
+False
+False
+
+    \end{Verbatim}
+
+    Важно, что оператор сравнения записывается \texttt{==}, а не \texttt{=}.
+Это нужно, чтобы он отличался от оператора присваивания.
+
+Для переменных типа \texttt{bool} тоже определены некоторые операции: 1.
+\texttt{a\ and\ b} ---- логическое "и". Возвращает \texttt{True} только
+если и \texttt{a} и \texttt{b} равны \texttt{True} 2. \texttt{a\ or\ b}
+---- логическое "или". Возвращает \texttt{True} если хотя бы кто-то из
+\texttt{a} и \texttt{b} равен \texttt{True} 3. \texttt{not\ a} ----
+логическое "не". Принимает один аргумент. Меняет значение \texttt{a} на
+противоположное.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{a} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{n}{a} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{b} \PY{o}{\PYZgt{}} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{l+m+mi}{6}\PY{p}{)} \PY{o+ow}{or} \PY{p}{(}\PY{n}{b} \PY{o}{==} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{o+ow}{not} \PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{l+m+mi}{5}\PY{p}{)} \PY{o+ow}{or} \PY{p}{(}\PY{n}{b} \PY{o}{\PYZgt{}} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3
+15
+True
+False
+True
+
+    \end{Verbatim}
+
+    \section{Подключение
+модулей}\label{ux43fux43eux434ux43aux43bux44eux447ux435ux43dux438ux435-ux43cux43eux434ux443ux43bux435ux439}
+
+За свою жизнь мы можем написать много кода, но явно не больше, чем все
+люди вместе уже написали. Да и зачем писать его заново, если можно
+просто использовать уже готовый? Модуль в Python ---- это уже написанный
+набор функций, которые мы можем использовать. Разберемся, как подключить
+модуль, функция из которого понадобится в домашнем задании. Для
+подключения модулей есть конструкция \texttt{import}. Перед тем, как
+использовать модуль, нужно просто написать
+\texttt{import\ название\ модуля}. После этого нам будет доступны
+функции этого модуля. Разберемся на примере:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{import} \PY{n+nn}{random}  \PY{c+c1}{\PYZsh{} подключаем модуль random}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}  \PY{c+c1}{\PYZsh{} вызываем функцию randint}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+980
+
+    \end{Verbatim}
+
+    Когда мы подключили модуль, можно вызвать функцию из него, написав
+\texttt{module.function()}, где \texttt{module} ---- название модуля, а
+\texttt{function} ---- название функции. Именно таким образом я вызвал
+функцию \texttt{randint()} выше. Эта функция принимает два целых числа и
+выдает случайное число между ними. Можно убедиться, что если несколько
+раз запустить ячейку выше, будут сгенерированы разные числа. Мы также
+можем импортировать не сам модуль, а только конкретные функции из него,
+чтобы не обращаться к ним каждый раз через \texttt{module.function}, а
+просто писать \texttt{function}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{o}{*}  \PY{c+c1}{\PYZsh{} импортируем функцию randint из модуля random}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+512
+
+    \end{Verbatim}
+
+    Можно указать несколько функций через запятую, а можно написать
+\texttt{from\ module\ import\ *}, чтобы импортировать сразу все.
+
+    \section{Списки}\label{ux441ux43fux438ux441ux43aux438}
+
+Нам потребуется сохранять несколько объектов в одном месте. Для этого у
+нас есть списки, aka массивы. Мы можем задать список так:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}  \PY{c+c1}{\PYZsh{} создаем список из чисел}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{l}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 2, 3, 5]
+<class 'list'>
+
+    \end{Verbatim}
+
+    В списке могут лежать объекты разного типа:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sdgdsg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+m+mf}{3.1415}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 'sdgdsg', 3.1415]
+
+    \end{Verbatim}
+
+    В ячейке выше у нас есть список, в котором лежат целое число, строка и
+дробное число.
+
+Во многом список похож на строку. К нему тоже можно обращаться по
+индексу, и узнавать его длину с помощью \texttt{len}. Также список
+разрешает модификацию одного элемента, а строка ---- нет.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{100500}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{l}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{100}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5
+1
+100500
+10
+[1, 2, 100, 7, 100500]
+
+    \end{Verbatim}
+
+    К списку можно добавить элемент с помощью функции \texttt{append}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+         
+         \PY{n}{l}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{100500}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 5, 3, 0]
+[1, 5, 3, 0, 100500]
+
+    \end{Verbatim}
+
+    Разберемся, как правильно копировать списки.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{l1} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         
+         \PY{n}{l2} \PY{o}{=} \PY{n}{l1}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l2}\PY{p}{)}
+         
+         \PY{n}{l2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{10}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 2, 3, 4, 5]
+[10, 2, 3, 4, 5]
+[10, 2, 3, 4, 5]
+
+    \end{Verbatim}
+
+    Как видно, если просто присовить список с помощью \texttt{=}, то когда
+мы будем модифицировать второй список, первый тоже пудет получать эти
+изменения. Чтобы этого избежать, нужно копировать списки с помощью
+\texttt{copy}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{l1} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         
+         \PY{n}{l2} \PY{o}{=} \PY{n}{l1}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{l2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{100}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[100, 2, 3, 4, 5]
+[1, 2, 3, 4, 5]
+
+    \end{Verbatim}
+
+    Теперь все правильно!
+
+\subsubsection{Срезы}\label{ux441ux440ux435ux437ux44b}
+
+Из списка мы можем получать подсписки с помощью срезов. Срез в общем
+виде выглядит так: \texttt{l{[}START:STOP:STEP{]}}. Этот срез берет в
+ответ все элементы списка \texttt{l} от \texttt{START} включительно до
+\texttt{STOP} не включительно с шагом \texttt{STEP}. Какие-то из этих
+элементов могут быть опущены. По умолчанию \texttt{START\ =\ 0},
+\texttt{STOP\ =\ len(l)}, \texttt{STEP\ =\ 1}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 2]
+[3, 2, 1]
+[0, 2, 4]
+[2, 3, 4, 5]
+[0, 1, 2]
+
+    \end{Verbatim}
+
+    \subsection{Множества}\label{ux43cux43dux43eux436ux435ux441ux442ux432ux430}
+
+В python можно задать множество. Это то же самое, что и множество в
+математике. В нем содержатся только уникальные элементы, можно
+проверить, лежит ли элемент во множестве, добавить элемент в множество,
+удалить элемент. Также нам доступны стандартные математические операции
+над множествами: объединение, пересечение и так далее.
+
+В множестве элементы хранятся в произвольном порядке.
+
+Задаются множества в фигурных скобках. Однако, пустое множество нельзя
+задать пусттыми фигурными скобками. Для этого стоит использовать функцию
+\texttt{set()}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{s} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{t} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}  \PY{c+c1}{\PYZsh{} пустое множество}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{1, 2, 3, 100\}
+<class 'set'>
+set()
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{s}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+m+mi}{200}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+         
+         \PY{n}{s}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{1, 2, 3, 100, 200\}
+\{1, 2, 3, 100, 200\}
+
+    \end{Verbatim}
+
+    Удалить элемент \texttt{x} из множества можно с помощью функций
+\texttt{remove(x)} и \texttt{discard(x)}. Они отличаются тем, что если
+элемента \texttt{x} нет в множестве, то первая выдаст ошибку, а вторая
+---- нет.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{s} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+         
+         \PY{n}{s}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+         
+         \PY{n}{s}\PY{o}{.}\PY{n}{discard}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{1, 2, 3\}
+\{2, 3\}
+\{3\}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{s} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+         \PY{n}{s}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}  \PY{c+c1}{\PYZsh{} ошибка}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        KeyError                                  Traceback (most recent call last)
+
+        <ipython-input-63-726b32614c4e> in <module>
+          1 s = \{1, 2, 3\}
+    ----> 2 s.remove(4)  \# ошибка
+          3 print(s)
+
+
+        KeyError: 4
+
+    \end{Verbatim}
+
+    С помощью функции \texttt{pop()} можно удалить какой-то элемент из
+множества. При этом эта функция вернет значение удаленного элемента.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{s} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{asfasf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{liuaewr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{zxcv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+zxcv
+asfasf
+liuaewr
+
+    \end{Verbatim}
+
+    Математические операции над множествами:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{s} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{\PYZcb{}}
+         \PY{n}{t} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s} \PY{o}{|} \PY{n}{t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} объединение }
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s} \PY{o}{\PYZam{}} \PY{n}{t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} пересечение}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s} \PY{o}{\PYZca{}} \PY{n}{t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} симметрическая разность}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s} \PY{o}{\PYZhy{}} \PY{n}{t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} разность}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} размер множества}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{1} \PY{o+ow}{in} \PY{n}{s}\PY{p}{)}  \PY{c+c1}{\PYZsh{} проверяем, есть ли элемент в множестве}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{2} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{s}\PY{p}{)}  \PY{c+c1}{\PYZsh{} проверяем, что 2 не лежит в множестве}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{1, 2, 100, 8, 25\}
+\{100\}
+\{1, 2, 8, 25\}
+\{1, 25\}
+3
+True
+True
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{a} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+         \PY{n}{b} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{==} \PY{n}{b}\PY{p}{)}  \PY{c+c1}{\PYZsh{} сравниваем два множества}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{b}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{\PYZcb{}} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{a}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{\PYZcb{}} \PY{o}{\PYZgt{}} \PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+True
+False
+True
+
+    \end{Verbatim}
+
+    Оператор \texttt{a\ \textgreater{}\ b} для двух множеств возвращает
+\texttt{True} тогда и только тогда, когда все элементы \texttt{b}
+содержатся в \texttt{a}, а также содержится еще что-то помимо них.
+\texttt{a\ \textgreater{}=\ b} аналогично
+\texttt{a\ \textgreater{}\ b\ or\ a\ ==\ b}.
+
+Аналогично для операторов \texttt{\textless{}} и \texttt{\textless{}=}.
+
+К множествам также можно преобразовывать и другие объекты, например,
+строки и списки.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{s} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{asdfadsf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'s', 'a', 'd', 'f'\}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{s} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sadfdsa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{324}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{1, '324', 'sadfdsa'\}
+
+    \end{Verbatim}
+
+    Видно, что в множестве могут лежать объекты разного типа.
+
+\subsection{Словари}\label{ux441ux43bux43eux432ux430ux440ux438}
+
+У нас есть список, который позволяет по индексу достать элемент. Словарь
+это структура, которая позволяет использовать вместо индекса не только
+число, но почти любой объект. То есть мы можем сопоставлять ключам
+значения. В качестве ключа может выступать число, строка, или еще
+что-то.
+
+Чтобы создать пустой словарь воспользуемся функцией \texttt{dict()}.
+Когда у нас есть словарь, мы можем работать с ним как со списком,
+используя в качестве индекса какие-то объекты.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n}{d} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Moscow}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ukraine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kiev}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{USA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Washington}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{USA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Russia': 'Moscow', 'Ukraine': 'Kiev', 'USA': 'Washington'\}
+Washington
+Moscow
+
+    \end{Verbatim}
+
+    Если мы попробуем обратиться по ключу, которого нет, то получим ошибку.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{France}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        KeyError                                  Traceback (most recent call last)
+
+        <ipython-input-71-40fb2584df30> in <module>
+    ----> 1 print(d['France'])
+    
+
+        KeyError: 'France'
+
+    \end{Verbatim}
+
+    Мы также можем проверить, если ли ключ в словаре. Это делается так же,
+как и для множества.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russia}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{d}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Germany}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{d}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+False
+
+    \end{Verbatim}
+
+    Можно получить значение по ключу и другим способом ---- функцией
+\texttt{get}. Ей нужно передать ключ. Если такой ключ есть, то она
+вернет соответствующее значение, а если нет, то \texttt{None}. При этом
+ошибки не будет. Можно также вторым параметром передать ей то, что нужно
+вернуть, если такого ключа нет.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Russia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Germany}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Canada}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No such key}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Moscow
+None
+No such key
+
+    \end{Verbatim}
+
+    Задать словарь можно еще и через фигурные скобки. В этом случае стоит
+перечислить пары ключ : значение через запятую в фигурных скобках.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Russia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Moscow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{USA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Washington}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ukraine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kiev}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ukraine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'Russia': 'Moscow', 'USA': 'Washington', 'Ukraine': 'Kiev'\}
+Kiev
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

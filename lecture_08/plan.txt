@@ -1,0 +1,102 @@
+1. https://console.cloud.google.com/
+
+2. Создаем новый проект
+
+3. Активируем Google Drive API и Google Sheets API
+
+3. Создаем ключ доступа
+    Drive API
+    Web server
+    Application data
+    NO
+
+4. Копируем ключ себе в проект
+
+5. Создаем таблицу и делимся ей с нашим сервисным e-mail
+
+6. Устанавливаем gspread и oauth2client
+
+7. Авторизация
+	from oauth2client.service_account import ServiceAccountCredentials
+
+	scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+
+    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+
+	client = gspread.authorize(creds)
+
+	sheet = client.open("tutorial")
+
+8. Показываем функции API
+	открываем worksheet
+	ws.get_all_values()
+
+	индекс с единицы
+	ws.row_values(ind)
+	ws.col_values(ind)
+
+	ws.cell(y, x).value
+
+	ws.insert_row(row, num)
+
+	ws.insert_col(col, num)
+
+	ws.delete_row(ind)
+
+	ws.update_cell(row, col, value)
+
+	ws.update_cells()
+
+9. Диапазоны –– преобразуем системы счисления
+
+	ws.update('A1:B2', [[1, 2], [3, 4]])
+
+10. Устанавливаем gspread-formatting
+    "backgroundColor": {
+      "red": 0.0,
+      "green": 0.0,
+      "blue": 0.0
+    },
+    "horizontalAlignment": "CENTER",
+    "textFormat": {
+      "foregroundColor": {
+        "red": 1.0,
+        "green": 1.0,
+        "blue": 1.0
+      },
+      "fontSize": 12,
+      "bold": True
+    }
+
+    gf.CellFormat(backgroundColor=gf.Color(r, g, b))
+
+    gf.format_cell_ranges(ws, formats)
+    formats –– список пар (диапазон, формат)
+
+    Ширина столбца и высота строки: gf.set_row_height(ws, '1:' + str(height), 10)
+
+    	gf.set_column_width(ws, 'A:' + i2s(width), 10)
+
+
+11. Объясняем задачу с картинкой
+
+12. Устанавливаем Pillow
+	from PIL import Image
+	im = Image('pic.png').convert('RGB')
+
+	r, g, b = im.getpixel((y, x))
+
+13. Усредняем значения в квадрате
+
+14. Рисуем мафиозника
+
+
+
+
+
+
+
+
+
+

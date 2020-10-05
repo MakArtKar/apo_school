@@ -1,0 +1,7 @@
+TOKEN = '1115477100:AAG_EomMjNC7L0TLaccYcSh5nkLQqll-pnM'
+
+MUSIC_DIRECTORY = 'music/'
+MISIC_INFO_FILE = MUSIC_DIRECTORY + 'music_info.txt'
+
+DATABASE_NAME = 'music.db'
+SHELVE_NAME = 'shelve'

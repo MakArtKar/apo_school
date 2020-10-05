@@ -1,0 +1,2 @@
+Pycharm: https://www.jetbrains.com/pycharm/download/#section=windows
+Anaconda: https://www.anaconda.com/products/individual

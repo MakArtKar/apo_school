@@ -1,0 +1,7 @@
+1. Файловый ввод-вывод данных
+2. Модуль keyboard
+   - функция write   keyboard.write("dasfsadfadsf")
+   - add_hotkey      keyboard.add_hotkey("alt+shift+3", func, args=(arg1, arg2))
+3. Пишем кейлоггер
+4. TkInter и сообщения пользователю
+5. Обработка ошибок: Try-Except
